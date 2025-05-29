@@ -31,10 +31,8 @@ class AICommand(commands.Cog):
         self.bot: commands.Bot = bot
 
     @commands.Cog.listener("on_message")
-    async def ai_dm(self, msg):
-        if (msg.author != self.bot.user
-            and msg.channel.type == discord.ChannelType.private
-            and not msg.content.startswith(settings.COMMAND_PREFIX)):
+    async def ai_text(self, msg):
+        if (msg.author != self.bot.user and msg.reference.resolved.author.id == (1286298001756782665) and not msg.content.startswith(settings.COMMAND_PREFIX)):
             answer = await get_answer(settings.FUN_AI_TOKEN, settings.FUN_AI_CHARACTER_ID, msg.content)
             await msg.reply(answer, allowed_mentions=noping)
 
@@ -44,6 +42,8 @@ class AICommand(commands.Cog):
         usage="'/ai <message>'",
         help="")
     @app_commands.describe(message="Write something.")
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @app_commands.user_install()
     async def ai_command(self, ctx, *, message: str):
         await ctx.defer()
         answer = await get_answer(settings.FUN_AI_TOKEN, settings.FUN_AI_CHARACTER_ID, message)

@@ -4,7 +4,7 @@ from discord.ext import commands
 from typing import Literal
 
 from utils.general import handle_errors
-from utils.message import Embeds
+from utils.message import Embeds, noping
 from utils.mcs import MinecraftServerStatus
 from utils.colors import bot_color
 
@@ -32,11 +32,11 @@ class MCServerCommand(commands.Cog):
             embed.add_field(name='Full address', value=f'`{server.host}:{server.port}`', inline=True)
             if (server.is_online): embed.add_field(name='MOTD:', value=f"`{server.motd_clean}`", inline=False)
 
-            await ctx.reply(embed=embed, allowed_mentions=discord.AllowedMentions.none())
+            await ctx.reply(embed=embed, allowed_mentions=noping)
         else:
             error_embed=Embeds.mcs_error_embed
             error_embed.set_thumbnail(url=self.bot.user.avatar.url)
-            await ctx.reply(embed=error_embed, allowed_mentions=discord.AllowedMentions.none())
+            await ctx.reply(embed=error_embed, allowed_mentions=noping)
 
     @mcserver.error
     async def mcserver_error(self, ctx, error: Exception):

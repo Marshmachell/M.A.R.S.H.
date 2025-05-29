@@ -4,10 +4,11 @@ from discord.ext import commands
 
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand
+from cogs.fun import AICommand
 
 logger = settings.logging.getLogger("bot")
 
-cogs = [BotPing, MCServerCommand]
+cogs = [BotPing, MCServerCommand, AICommand]
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):
@@ -22,6 +23,6 @@ class MarshBot(commands.Bot):
         logger.info(f"🤖: {bot.user.name}")
                 
 intents = discord.Intents.all()
-bot = MarshBot(command_prefix="!", intents=intents)
+bot = MarshBot(command_prefix=settings.COMMAND_PREFIX, intents=intents)
 
 bot.run(settings.DISCORD_API_SECRET, root_logger=True)

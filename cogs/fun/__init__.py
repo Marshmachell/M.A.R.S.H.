@@ -1,0 +1,1 @@
+from cogs.fun.ai import AICommand

@@ -21,11 +21,11 @@ async def handle_errors(ctx, error, errors):
 			break
 	else:
 		if ctx.interaction:
-			await ctx.interaction.response.send_message(f"Произошла непредвиденная ошибка, пожалуйста, "
-				f"сообщите о ней <@536441049644793858> или <@567014541507035148>. Ошибка:\n`{error}`",
+			await ctx.interaction.response.send_message(f"An unforeseen error occurred, "
+				f"please inform about it <@539054518885679126>. Error:\n`{error}`",
 				allowed_mentions=discord.AllowedMentions.none(), ephemeral=True)
 		else:
-			await ctx.reply(f"Произошла непредвиденная ошибка, пожалуйста, "
-				f"сообщите о ней <@536441049644793858> или <@567014541507035148>. Ошибка:\n`{error}`",
+			await ctx.reply(f"An unforeseen error occurred, "
+				f"please inform about it <@539054518885679126>. Error:\n`{error}`",
 				allowed_mentions=discord.AllowedMentions.none())
 		print(error_msg)

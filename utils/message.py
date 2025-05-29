@@ -2,6 +2,8 @@ import discord
 
 from utils.colors import error_color, warn_color
 
+noping=discord.AllowedMentions.none()
+
 class Embeds:
     mcs_error_embed=discord.Embed(
         title='❗ An Error Occurred.',

@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DISCORD_API_SECRET = os.getenv("DISCORD_API_TOKEN")
+FUN_AI_TOKEN = os.getenv("FUN_AI_TOKEN")
+FUN_AI_CHARACTER_ID = os.getenv("FUN_AI_CHARACTER_ID")
+COMMAND_PREFIX = os.getenv("COMMAND_PREFIX")
 
 LOGGING_CONFIG = {
     "version": 1,

@@ -6,6 +6,12 @@ from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand
 from cogs.fun import AICommand
 
+from flask import Flask
+from flask_scss import Scss
+
+app = Flask(__name__)
+Scss(app)
+
 logger = settings.logging.getLogger("bot")
 
 cogs = [BotPing, MCServerCommand, AICommand]

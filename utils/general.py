@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from utils.message import Embeds
+
 async def handle_errors(ctx, error, errors):
 	if isinstance(ctx, discord.Interaction):
 		ctx = await commands.Context.from_interaction(ctx)
@@ -14,10 +16,14 @@ async def handle_errors(ctx, error, errors):
 			curr_score += 1
 		#
 		if curr_score >= case_cost:
+			embed = Embeds.error_embed
+			embed.description = f"{case['message']}"
 			if ctx.interaction:
-				await ctx.interaction.response.send_message(f"{case['msg']}", allowed_mentions=discord.AllowedMentions.none(), ephemeral=True)
+				embed.set_thumbnail(url=ctx.bot.user.avatar.url)
+				await ctx.interaction.response.send_message(embed=embed, allowed_mentions=discord.AllowedMentions.none(), ephemeral=True)
 			else:
-				await ctx.reply(f"{case['msg']}", allowed_mentions=discord.AllowedMentions.none(), delete_after=5)
+				embed.set_thumbnail(url=ctx.bot.user.avatar.url)
+				await ctx.reply(embed=embed, allowed_mentions=discord.AllowedMentions.none(), delete_after=5)
 			break
 	else:
 		if ctx.interaction:

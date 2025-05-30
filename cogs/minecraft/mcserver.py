@@ -5,7 +5,7 @@ from typing import Literal
 
 from utils.general import handle_errors
 from utils.message import Embeds, noping
-from utils.mcs import MinecraftServerStatus
+from utils.mcstatus import MinecraftServerStatus
 from utils.colors import bot_color
 
 class MCServerCommand(commands.Cog):
@@ -20,7 +20,7 @@ class MCServerCommand(commands.Cog):
     @app_commands.describe(edition="Choose edition of minecraft server.", ip="IP-address of Minecraft server.")
     async def mcserver(self, ctx, edition: Literal["java", "bedrock"], ip: str):
         server = MinecraftServerStatus(edition, ip)
-        
+
         if (server._fetch_status()):
             embed = discord.Embed(title=f'Server: {server.host}', color=bot_color)
             embed.set_thumbnail(url=server.icon)
@@ -34,7 +34,8 @@ class MCServerCommand(commands.Cog):
 
             await ctx.reply(embed=embed, allowed_mentions=noping)
         else:
-            error_embed=Embeds.mcs_error_embed
+            error_embed=Embeds.error_embed
+            error_embed.description = "**Bad argument**. Failed to fetch IP."
             error_embed.set_thumbnail(url=self.bot.user.avatar.url)
             await ctx.reply(embed=error_embed, allowed_mentions=noping)
 
@@ -42,7 +43,23 @@ class MCServerCommand(commands.Cog):
     async def mcserver_error(self, ctx, error: Exception):
         await handle_errors(ctx, error, [
             {
+                "contains": "edition is a required argument",
+                "message": f"**Missed required argument**. Enter server edition."
+            },
+            {
+                "contains": "ip is a required argument",
+                "message": f"**Missed required argument**. Enter server IP."
+            },
+            {
+				"exception": commands.MissingRequiredArgument,
+				"message": f"Missed required argument."
+			},
+            {
+				"contains": 'Could not convert "edition"',
+				"message": "**Bad argument**. Edition must be one of: java, bedrock."
+			},
+            {
 				"contains": "'NotFound'",
-				"msg": "NotFound"
+				"message": "NotFound"
 			}
         ])

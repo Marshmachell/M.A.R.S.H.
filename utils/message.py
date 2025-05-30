@@ -5,6 +5,10 @@ from utils.colors import error_color, warn_color
 noping=discord.AllowedMentions.none()
 
 class Embeds:
+    error_embed=discord.Embed(
+        title='❗ An Error Occurred.',
+        color=error_color)
+    
     unauth_user_embed=discord.Embed(
         title='❗ Unauthorized User Detected.',
         description='You do not seem to be on the list of trusted. If an error occurs, write <@539054518885679126> about this.',

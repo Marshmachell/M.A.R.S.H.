@@ -54,25 +54,15 @@ class AICommand(commands.Cog):
             error_embed=Embeds.unauth_user_embed
             error_embed.set_thumbnail(url=self.bot.user.avatar.url)
             
-            # Check if interaction has been responded to
-            if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done():
-                await ctx.reply(embed=error_embed, allowed_mentions=noping, ephemeral=True)
-            else:
-                await ctx.send(embed=error_embed, allowed_mentions=noping)
+            if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done(): await ctx.reply(embed=error_embed, allowed_mentions=noping, ephemeral=True)
+            else: await ctx.send(embed=error_embed, allowed_mentions=noping)
             return
         
         try:
-            # Defer only if not already responded
-            if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done():
-                await ctx.defer()
-            
+            if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done(): await ctx.defer()
             answer = await get_answer(settings.FUN_AI_TOKEN, settings.FUN_AI_CHARACTER_ID, ctx.author.name, message)
-            
-            # Use followup if this was an interaction and we deferred
-            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done():
-                await ctx.interaction.followup.send(answer, allowed_mentions=noping)
-            else:
-                await ctx.reply(answer, allowed_mentions=noping)
+            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done(): await ctx.interaction.followup.send(answer, allowed_mentions=noping)
+            else: await ctx.reply(answer, allowed_mentions=noping)
                 
         except Exception as e:
             await self.ai_command_error(ctx, e)
@@ -81,6 +71,6 @@ class AICommand(commands.Cog):
         await handle_errors(ctx, error, [
             {
 				"exception": commands.MissingRequiredArgument,
-				"msg": f"Write a message that you want to send Elon AI."
+				"message": f"Missed required argument."
 			}
         ])

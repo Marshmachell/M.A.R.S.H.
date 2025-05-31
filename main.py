@@ -22,7 +22,7 @@ class MarshBot(commands.Bot):
 
         logger.info(f"🤖: {bot.user.name}")
         try:
-            with open("bot.png", "rb") as file:
+            with open("assets/images/bot.png", "rb") as file:
                 await bot.user.edit(avatar=file.read())
         except:
             logger.warning("pfp ratelimit")

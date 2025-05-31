@@ -1,1 +1,1 @@
-![Аватарка йоу](bot.png)
+![Аватарка йоу](assets/images/bot.png)

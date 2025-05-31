@@ -76,7 +76,7 @@ class VoiceAICommand(commands.Cog):
     @app_commands.allowed_contexts(guilds=True, dms=False, private_channels=False)
     async def ai_voice_command(self, ctx: commands.Context, *, message: str):
         try:
-            if ctx.author.voice is None: raise TypeError("user must be in vc.")
+            if ctx.author.voice is None: raise AttributeError("user must be in vc.")
 
             voice_channel = ctx.author.voice.channel
 
@@ -122,7 +122,7 @@ class VoiceAICommand(commands.Cog):
 				"message": f"**Missed required argument**. Enter your message."
 			},
             {
-                "exception": TypeError,
+                "exception": AttributeError,
                 "contains": "user must be in vc.",
                 "message": f"**Bad interaction**. You must be in any voice channel."
             }

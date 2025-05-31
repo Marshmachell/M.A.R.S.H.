@@ -124,7 +124,7 @@ celerybeat.pid
 .env
 .venv
 .gitignore
-**/desktop.ini
+desktop.ini
 test-branch/
 env/
 venv/

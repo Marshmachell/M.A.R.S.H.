@@ -4,11 +4,11 @@ from discord.ext import commands
 
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand
-from cogs.fun import AICommand
+from cogs.fun import ChatAICommand, VoiceAICommand
 
 logger = settings.logging.getLogger("bot")
 
-cogs = [BotPing, MCServerCommand, AICommand]
+cogs = [BotPing, MCServerCommand, ChatAICommand, VoiceAICommand]
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):
@@ -21,6 +21,11 @@ class MarshBot(commands.Bot):
         await self.tree.sync()
 
         logger.info(f"🤖: {bot.user.name}")
+        try:
+            with open("bot.png", "rb") as file:
+                await bot.user.edit(avatar=file.read())
+        except:
+            logger.warning("pfp ratelimit")
                 
 intents = discord.Intents.all()
 bot = MarshBot(command_prefix=settings.COMMAND_PREFIX, intents=intents)

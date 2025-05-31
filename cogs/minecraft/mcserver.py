@@ -18,13 +18,14 @@ class MCServerCommand(commands.Cog):
         usage="'/mc-server <java|bedrock> <адрес>'",
         help="")
     @app_commands.describe(edition="Choose edition of minecraft server.", ip="IP-address of Minecraft server.")
-    async def mcserver(self, ctx, edition: Literal["java", "bedrock"], ip: str):
+    async def mcserver(self, ctx: commands.Context, edition: Literal["java", "bedrock"], ip: str):
         server = MinecraftServerStatus(edition, ip)
 
         if (server._fetch_status()):
             embed = discord.Embed(title=f'Server: {server.host}', color=bot_color)
             embed.set_thumbnail(url=server.icon)
-            embed.add_field(name='Status', value=f'`{'🟢 Online' if server.is_online else '🔴 Offline'}`', inline=True)
+            status = '🟢 Online' if server.is_online else '🔴 Offline'
+            embed.add_field(name='Status', value=f'`{status}`', inline=True)
             if (server.is_online): embed.add_field(name='Players', value=f'`{server.online}/{server.max_online}`', inline=True)
             if (server.is_online): embed.add_field(name='Version', value=f'`{server.version}`', inline=True)
             if (server.is_online): embed.add_field(name='IP-address', value=f'`{server.ip}`', inline=True)
@@ -40,7 +41,7 @@ class MCServerCommand(commands.Cog):
             await ctx.reply(embed=error_embed, allowed_mentions=noping)
 
     @mcserver.error
-    async def mcserver_error(self, ctx, error: Exception):
+    async def mcserver_error(self, ctx, error):
         await handle_errors(ctx, error, [
             {
                 "contains": "edition is a required argument",

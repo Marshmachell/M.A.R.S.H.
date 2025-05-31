@@ -1,1 +1,1 @@
-from cogs.fun.ai import AICommand
+from cogs.fun.ai import ChatAICommand, VoiceAICommand

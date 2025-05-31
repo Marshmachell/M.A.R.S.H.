@@ -120,10 +120,12 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.test-branch
 .env
 .venv
 .gitignore
 *.ini
+test-branch/
 env/
 venv/
 ENV/

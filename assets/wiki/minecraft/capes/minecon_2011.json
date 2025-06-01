@@ -1,0 +1,10 @@
+{
+    "name": "MineCon 2011",
+    "id": "953cac8b779fe41383e675ee2b86071a71658f2180f56fbce8aa315ea70e2ed6",
+    "description": "The **MINECON 2011 Cape** is a cape given to MINECON 2011 attendees.",
+    "obtaining": "In Java Edition, this cape was given to MINECON 2011 attendees via their registered username.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Snowman",
+    "id": "23ec737f18bfe4b547c95935fc297dd767bb84ee55bfd855144d279ac9bfd9fe",
+    "description": "The **Snowman Cape** is a personal cape that was given to a user who brought Notch the TV presenter and actor Ray Cokes.",
+    "obtaining": "This cape was given to JulianClark as a reward for bringing Ray Cokes. Ray apparently is his godfather.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

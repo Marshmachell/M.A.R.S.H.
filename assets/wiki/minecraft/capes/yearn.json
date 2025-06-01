@@ -1,0 +1,10 @@
+{
+    "name": "Yearn",
+    "id": "308b32a9e303155a0b4262f9e5483ad4a22e3412e84fe8385a0bdd73dc41fa89",
+    "description": "The **Yearn Cape** (formerly **Idaho Cape‌**) is a cape that was given out as a promotion for A Minecraft Movie, alongside the Home Cape and the Menace Cape.",
+    "obtaining": "The Yearn cape is obtained by completing all 6 quests in the A Minecraft Movie Live Event, an event server hosted from March 25, 2025 to April 14, 2025 on Bedrock Edition.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

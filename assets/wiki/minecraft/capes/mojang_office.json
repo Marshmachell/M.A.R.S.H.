@@ -1,0 +1,10 @@
+{
+    "name": "Mojang Office",
+    "id": "5c29410057e32abec02d870ecb52ec25fb45ea81e785a7854ae8429d7236ca26",
+    "description": "The **Mojang Office Cape** is a cape which was obtainable by completing all five daily challenges in Eerie Mojang Office Party, an event server hosted from December 9, 2024 to December 20, 2024 on Bedrock Edition.\nIt has also been referred to as the **Eyeblossom Cape** in official media.",
+    "obtaining": "The Mojang Office cape was obtained by completing all five daily challenges in the Eerie Mojang Office Party event server.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

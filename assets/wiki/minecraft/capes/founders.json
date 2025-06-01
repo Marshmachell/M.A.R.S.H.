@@ -1,0 +1,10 @@
+{
+    "name": "Founder's",
+    "id": "99aba02ef05ec6aa4d42db8ee43796d6cd50e4b2954ab29f0caeb85f96bf52a1",
+    "description": "The **Founder's Cape** is a cape that was released for download during MINECON Live 2019, being the first cape to be released to the Character Creator.",
+    "obtaining": "Players were able to obtain the Founder's cape skin pack through the Marketplace for a limited time for free. With the skin pack, only Steve and Alex could use the cape. Players who previously claimed the skin pack received the cape as Character Creator item when the Character Creator was released.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

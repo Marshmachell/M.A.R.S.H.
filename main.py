@@ -5,10 +5,12 @@ from discord.ext import commands
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand, MCPlayerCommand
 from cogs.fun import ChatAICommand, VoiceAICommand
+from cogs.help import HelpCommand
+from cogs.help.wiki import WikiCommand
 
 logger = settings.logging.getLogger("bot")
 
-cogs = [BotPing, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand]
+cogs = [BotPing, HelpCommand, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand, WikiCommand]
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):
@@ -19,6 +21,7 @@ class MarshBot(commands.Bot):
         for cog in cogs:
             await self.add_cog(cog(self))
         await self.tree.sync()
+        HelpCog = self.get_cog("HelpCommand")
 
         logger.info(f"🤖: {bot.user.name}")
         try:

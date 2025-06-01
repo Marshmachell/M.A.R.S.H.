@@ -1,0 +1,10 @@
+{
+    "name": "Mojang Studios",
+    "id": "9e507afc56359978a3eb3e32367042b853cddd0995d17d0da995662913fb00f7",
+    "description": "The **Mojang Studios Cape** is a cape given out to employees of Mojang Studios.",
+    "obtaining": "This cape is given to those employed by Mojang Studios on or after July 25, 2021.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

@@ -29,7 +29,7 @@ class ChatAICommand(commands.Cog):
     @commands.hybrid_command(name="ai",
         aliases=["аи", "фш", "ии"],
         description="Ask a question of AI Elon Mask.",
-        usage="'/ai <message>'",
+        usage="/ai <message>",
         help="")
     @app_commands.describe(message="Write something.")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
@@ -64,10 +64,10 @@ class VoiceAICommand(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_command(name="voice",
-        aliases=["мщшсу", "войс", "vc", "вйос"],
+    @commands.hybrid_command(name="ai-voice",
+        aliases=["мщшсу", "войс", "vc", "вйос", "aiv", "аив", "иив"],
         description="Ask a question of AI Elon Mask.",
-        usage="'/voice <message>'",
+        usage="/ai-voice <message>",
         help="")
     @app_commands.describe(message="Write something.")
     @app_commands.allowed_contexts(guilds=True, dms=False, private_channels=False)

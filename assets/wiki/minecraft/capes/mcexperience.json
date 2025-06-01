@@ -1,0 +1,10 @@
+{
+    "name": "Minecraft Experience",
+    "id": "7658c5025c77cfac7574aab3af94a46a8886e3b7722a895255fbf22ab8652434",
+    "description": "The **MC Experience Cape**‌ or **Minecraft Experience Cape**‌ is a cape which is obtainable by visiting Minecraft Experience: Villager Rescue, an in-person interactive event. Attendees of the event will receive a code to redeem this cape. The cape is available on Java Edition and Bedrock Edition.",
+    "obtaining": "Players can receive this cape by redeeming a code rewarded after completing the experience. The codes must be redeemed no later than 30 days after the event closes in the tour city where they were obtained.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

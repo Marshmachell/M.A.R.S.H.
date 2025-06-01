@@ -1,0 +1,10 @@
+{
+    "name": "Scrolls",
+    "id": "3efadf6510961830f9fcc077f19b4daf286d502b5f5aafbd807c7bbffcaca245",
+    "description": "The **Scrolls Champion Cape** is a cape that was given out to high-ranking players of Mojang's game Caller's Bane, formerly known as Scrolls.",
+    "obtaining": "Starting on November 7th, 2014, this cape was given to players who earned first place on the Scrolls weekly ladder five separate times. As of September 30, 2015, capes were no longer given out for this. This is due to the fact that the player counts had gotten too low for the environment to remain competitive.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

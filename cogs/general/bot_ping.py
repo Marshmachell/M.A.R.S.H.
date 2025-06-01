@@ -25,7 +25,7 @@ class BotPing(commands.Cog):
     @commands.hybrid_command(name="ping",
         aliases=["пинг", "gbyu", "зштп"],
         description='"Pong" message about bot.',
-        usage="'/ping'",
+        usage="/ping",
         help="")
     async def ping_command(self, msg):
         latency = round(self.bot.latency * 1000)

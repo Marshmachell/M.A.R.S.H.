@@ -1,0 +1,10 @@
+{
+    "name": "Follower's",
+    "id": "569b7f2a1d00d26f30efe3f9ab9ac817b1e6d35f4f3cfb0324ef2d328223d350",
+    "description": "The **Follower's Cape** is a cape that was given out as part of the 15 Days of Minecraft celebrations, alongside the Purple Heart cape and the 15th Anniversary cape.",
+    "obtaining": "Players could receive this cape by redeeming a code, which can be obtained by watching any Minecraft livestream on TikTok. This event started on May 15, 2024 and ended on May 31, 2024.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

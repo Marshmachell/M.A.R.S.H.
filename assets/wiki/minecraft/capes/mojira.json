@@ -1,0 +1,10 @@
+{
+    "name": "Mojira Moderator",
+    "id": "ae677f7d98ac70a533713518416df4452fe5700365c09cf45d0d156ea9396551",
+    "description": "The **Moderator Cape** is a cape given to moderators on the Mojang Bug Tracker.",
+    "obtaining": "This cape is given to current and past moderators on Mojira. To become a moderator, a community member need to be consistently active in assisting in the bug tracker's moderation, and become a Mojira helper first.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Spade",
+    "id": "2e002d5e1758e79ba51d08d92a0f3a95119f2f435ae7704916507b6c565a7da8",
+    "description": "The **Spade Cape** is a personal cape that was given to the modder MrMessiah.",
+    "obtaining": "This cape was given to MrMessiah as gratitude for developing the BetterLight mod, which got integrated into the game and was responsible for Minecraft's lighting and grass features. Though it was discussed back in 2011, the cape hadn't been granted until 2015. The artist of the cape is unknown, but MrMessiah thinks it was Jeb.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

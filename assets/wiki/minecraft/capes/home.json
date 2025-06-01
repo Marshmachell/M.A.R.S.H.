@@ -1,0 +1,10 @@
+{
+    "name": "Home",
+    "id": "1de21419009db483900da6298a1e6cbf9f1bc1523a0dcdc16263fab150693edd",
+    "description": "The **Home Cape** is a cape that was given out as a promotion for A Minecraft Movie, alongside the Menace Cape and the Yearn Cape.",
+    "obtaining": "Players could receive this cape by redeeming a code, which could be obtained by watching any Minecraft livestream on Twitch for three minutes. This could be done between March 18, 2025 and April 6, 2025.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Translator (Chinese)",
+    "id": "2262fb1d24912209490586ecae98aca8500df3eff91f2a07da37ee524e7e3cb6",
+    "description": "The **Translator Cape** and the **Chinese Translator Cape** are capes that were given to some players that assisted with the Minecraft translation project in Crowdin. Both capes look identical when viewed from the back, only differing on their undersides.",
+    "obtaining": "This variant of the Translator Cape was given to Powup333, Craft_Lawrence and sjjklh on June 4, 2015 for playing vital roles on the Minecraft translation project in Crowdin in Chinese.\nThe Chinese Translator Cape is identical to the Translator cape except for the Chinese flag on the underside of the cape, similar to the Japanese flag on the underside of cheapsh0t's Cape.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

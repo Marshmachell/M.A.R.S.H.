@@ -12,12 +12,14 @@ class MCServerCommand(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_command(name="mcserver",
+    @commands.hybrid_command(name="mc-server",
         aliases=["mcs", "мкс", "мцс", "сервер", "ьсы", "server"],
-        description="Issues information about Java / Bedrock server.",
-        usage="'/mcserver <java|bedrock> <address>'",
+        description="Issues information about Java / Bedrock Minecraft server.",
+        usage="/mc-server <java|bedrock> <address>",
         help="")
     @app_commands.describe(edition="Choose edition of minecraft server.", ip="IP-address of Minecraft server.")
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @app_commands.user_install()
     async def mcserver(self, ctx: commands.Context, edition: Literal["java", "bedrock"], ip: str):
         try:
             server = MinecraftServerStatusAPI(edition, ip)

@@ -1,0 +1,10 @@
+{
+    "name": "Vanilla",
+    "id": "f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4",
+    "description": "The **One Vanilla Cape‌** or **Vanilla cape‌** is a cape given to players who owned both Java Edition and Bedrock Edition for Windows before June 6, 2022 prior to both editions merging into one bundle.\nThe cape resembles a grass block on top and bedrock on the bottom, representing both editions of the game.",
+    "obtaining": "Players were able to obtain the cape under the condition that both Java Edition and Bedrock Edition for Windows are owned in the same Microsoft account before June 6, 2022.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

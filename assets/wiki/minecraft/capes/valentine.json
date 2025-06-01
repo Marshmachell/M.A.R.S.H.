@@ -1,0 +1,10 @@
+{
+    "name": "Valentine",
+    "id": "9cae98aee40ece35ada13a62f5219b1eac8024dc7cf5a1c3555f85c35fca7628",
+    "description": "The **Valentine Cape** is a cape that was briefly given out to two players by mistake.",
+    "obtaining": "This cape was given to LolFoxy2 by a Mojang employee after resolving migration problems with the former's Mojang account. The cape was removed after the employee realized its rarity.\nThe cape was also given to the player JoinGrave for unknown reasons. It is also unknown if they still have it.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

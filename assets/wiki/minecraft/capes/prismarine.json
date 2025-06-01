@@ -1,0 +1,10 @@
+{
+    "name": "Prismarine",
+    "id": "d8f8d13a1adf9636a16c31d47f3ecc9bb8d8533108aa5ad2a01b13b1a0c55eac",
+    "description": "The **Prismarine Cape** is a personal cape that was given to the modder Drullkus.",
+    "obtaining": "This cape was given to Drullkus by Jeb as appreciation for creating his own prismarine block texture for the Chisel mod instead of modifying Mojang's textures.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

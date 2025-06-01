@@ -1,0 +1,10 @@
+{
+    "name": "Purple Heart",
+    "id": "cb40a92e32b57fd732a00fc325e7afb00a7ca74936ad50d8e860152e482cfbde",
+    "description": "The **Purple Heart Cape** is a cape that was given out as part of the 15 Days of Minecraft celebrations, alongside the Follower's cape and the 15th Anniversary cape.",
+    "obtaining": "Players could receive this cape by redeeming a code, which was obtainable by watching any Minecraft livestream on Twitch for 15 minutes. This event started on May 17, 2024 and ended on June 18, 2024.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

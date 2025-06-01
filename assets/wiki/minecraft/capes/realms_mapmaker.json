@@ -1,0 +1,10 @@
+{
+    "name": "Realms Mapmaker",
+    "id": "17912790ff164b93196f08ba71d0e62129304776d0f347334f8a6eae509f8a56",
+    "description": "The **Realms MapMaker Cape** is a cape given to certain contributors for making Minecraft Realms maps. The design is based on the logo for the Atlas submission portal, the web interface used by the mapmakers to upload their maps for review.",
+    "obtaining": "This cape is given to map makers in the Java Realms Content Creator Program who met the criteria.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

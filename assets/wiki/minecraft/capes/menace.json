@@ -1,0 +1,10 @@
+{
+    "name": "Menace",
+    "id": "dbc21e222528e30dc88445314f7be6ff12d3aeebc3c192054fba7e3b3f8c77b1",
+    "description": "The **Menace Cape** is a cape that was given out as a promotion for A Minecraft Movie, alongside the Home Cape and the Yearn Cape.",
+    "obtaining": "Players could receive this cape by redeeming a code, which could be obtained by watching any Minecraft livestream on TikTok for three minutes. This could be done between March 18, 2025 and April 6, 2025.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

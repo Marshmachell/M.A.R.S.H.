@@ -27,6 +27,5 @@ async def get_speech(token, char_id, voice_id, author, request):
                     chat_id=answer.chat_id,
                     turn_id=answer.turn_id,
                     candidate_id=primary_candidate.candidate_id,
-                    voice_id=voice_id
-                )
+                    voice_id=voice_id)
     return speech, message

@@ -1,0 +1,10 @@
+{
+    "name": "Migrator",
+    "id": "2340c0e03dd24a11b15a8b33c2a7e9e32abb2051b2481d0ba7defd635ca7a933",
+    "description": "The **Migrator Cape** is a cape that was given to players who migrated their Mojang accounts (used for Minecraft: Java Edition) to Microsoft accounts.",
+    "obtaining" : "Players who bought Minecraft: Java Edition before December 1, 2020 got this cape when migrating their account.\nThe cape was first given out around July 9, 2021 and could be obtained until the end of the migration period on September 19, 2023.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

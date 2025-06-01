@@ -1,0 +1,10 @@
+{
+    "name": "Millionth Customer",
+    "id": "70efffaf86fe5bc089608d3cb297d3e276b9eb7a8f9f2fe6659c23a2d8b18edf",
+    "description": "The **Millionth Customer Cape** is a personal cape that was given to the player who purchased the millionth copy of Minecraft.",
+    "obtaining": "This cape was given to akronman1, who purchased the 1,000,000th copy of the game.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

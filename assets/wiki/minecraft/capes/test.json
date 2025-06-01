@@ -1,0 +1,10 @@
+{
+    "name": "Test",
+    "id": "c2b4db5d2eefb2d946ba374753fd9d1f2bacbac0d409521f2d8f54d0ff9a4f01",
+    "description": "A cape that has similar color palette to the sniffer has been found on Mojang's staging texture server and on Mojang's production texture server. It was added to Mojang's staging texture server on October 10, 2023 and added to Mojang's production texture server 7 days later on October 17, 2023.",
+    "obtaining": "The cape was first seen on 2 accounts on Mojang's staging server database.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

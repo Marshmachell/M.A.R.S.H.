@@ -1,0 +1,10 @@
+{
+    "name": "Translator (Japanese)",
+    "id": "ca29f5dd9e94fb1748203b92e36b66fda80750c87ebc18d6eafdb0e28cc1d05f",
+    "description": "The **Translator Cape** and the **Chinese Translator Cape** are capes that were given to some players that assisted with the Minecraft translation project in Crowdin. Both capes look identical when viewed from the back, only differing on their undersides.",
+    "obtaining": "The Translator Cape was given to some Crowdin proofreaders (experienced translators with moderation permissions for their language) on May 16, 2012 to 29 contributors. A fair dice roll was used to determine which contributors got the cape. There were originally plans to give more capes from time to time, but Jeb canceled them after seeing abusive behavior from some translators, such as using auto-translation and down-voting legitimate translations.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Pan",
+    "id": "28de4a81688ad18b49e735a273e086c18f1e3966956123ccb574034c06f5d336",
+    "description": "The **Pan Cape!**, or the **Pan cape**‌ is a cape given out for free to all players. The name is a pun, as the cape itself is designed to look like a stack of pancakes.",
+    "obtaining": "Originally, players who participated in Minecraft Beta were able to use the cape temporarily. Since the release of Bedrock Edition 1.16.0, the standard version of this cape has been given out to all Bedrock Edition players by default. On May 8, 2025, players who owned the cape on Bedrock Edition were also granted the cape on Java Edition.\nPlayers who were able to claim the duplicated version of this cape can still equip it in the Character Creator.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

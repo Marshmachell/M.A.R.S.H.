@@ -1,0 +1,10 @@
+{
+    "name": "Mojang (Classic)",
+    "id": "8f120319222a9f4a104e2f5cb97b2cda93199a2ee9e1585cb8d09d6f687cb761",
+    "description": "The **Mojang Cape** and the **Classic Mojang Cape** were capes that were given out to employees of Mojang before it rebranded into Mojang Studios.",
+    "obtaining": "The Classic Mojang Cape was given to those employed by Mojang at any point between December 20, 2010 and October 7, 2015.\nThe Mojang Cape was given to those employed by Mojang at any point between October 7, 2015 and July 25, 2021.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

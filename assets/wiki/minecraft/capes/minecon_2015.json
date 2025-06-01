@@ -1,0 +1,10 @@
+{
+    "name": "MineCon 2015",
+    "id": "b0cc08840700447322d953a02b965f1d65a13a603bf64b17c803c21446fe1635",
+    "description": "The **MINECON 2015 Cape** is a cape given to MINECON 2015 attendees.",
+    "obtaining": "In Java Edition, this cape was given to MINECON 2015 attendees who redeemed an emailed link, provided they have scanned their ticket at the venue.",
+    "edition": {
+        "java": true,
+        "bedrock": true
+    }
+}

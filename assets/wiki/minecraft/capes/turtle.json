@@ -1,0 +1,10 @@
+{
+    "name": "Turtle",
+    "id": "5048ea61566353397247d2b7d946034de926b997d5e66c86483dfb1e031aee95",
+    "description": "The **Turtle Cape** is a personal cape that was given to the player whose suggestion of turtles was implemented.",
+    "obtaining": "This cape was given to billyK_ for his suggestion of turtles, which was implemented into the game. It was also given to some Mojang-owned accounts for endpoint testing.",
+    "edition": {
+        "java": true,
+        "bedrock": false
+    }
+}

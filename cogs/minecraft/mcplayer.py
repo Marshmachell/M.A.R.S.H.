@@ -14,18 +14,14 @@ from utils.colors import bot_color
 async def combine(name):
     front = f"https://vzge.me/full/832/{name}.png?no=ears&y=0"
     back = f"https://vzge.me/full/832/{name}.png?no=ears&y=180"
-    params = {
-        "cape": "migrator",
-        "ears": "false"
-    }
     
     headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
     
     try:
-        response1 = requests.get(front, params=params, headers=headers, timeout=10)
-        response2 = requests.get(back, params=params, headers=headers, timeout=10)
+        response1 = requests.get(front, headers=headers, timeout=10)
+        response2 = requests.get(back, headers=headers, timeout=10)
         
         if response1.status_code != 200 or response2.status_code != 200:
             return None

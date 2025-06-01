@@ -8,10 +8,7 @@ from discord import app_commands
 from discord.ext import commands
 from utils.message import Embeds, noping
 from settings import AUTHORIZED_IDs
-from utils.ai import get_answer, get_speech
-
-from PyCharacterAI import get_client
-from PyCharacterAI.exceptions import SessionClosedError
+from utils.cai import get_answer, get_speech
 
 logger = settings.logging.getLogger("bot")
 

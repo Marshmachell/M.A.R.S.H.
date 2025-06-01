@@ -1,6 +1,6 @@
 import requests
 
-class MinecraftServerStatus():
+class MinecraftServerStatusAPI():
     def __init__(self, edition, address):
         self.edition = edition
         self.address = address

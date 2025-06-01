@@ -5,23 +5,24 @@ from typing import Literal
 
 from utils.general import handle_errors
 from utils.message import Embeds, noping
-from utils.mcstatus import MinecraftServerStatus
+from utils.api.mcs import MinecraftServerStatusAPI
 from utils.colors import bot_color
 
 class MCServerCommand(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_command(name="mc-server",
+    @commands.hybrid_command(name="mcserver",
         aliases=["mcs", "мкс", "мцс", "сервер", "ьсы", "server"],
         description="Issues information about Java / Bedrock server.",
-        usage="'/mc-server <java|bedrock> <адрес>'",
+        usage="'/mcserver <java|bedrock> <address>'",
         help="")
     @app_commands.describe(edition="Choose edition of minecraft server.", ip="IP-address of Minecraft server.")
     async def mcserver(self, ctx: commands.Context, edition: Literal["java", "bedrock"], ip: str):
-        server = MinecraftServerStatus(edition, ip)
+        try:
+            server = MinecraftServerStatusAPI(edition, ip)
+            if not server._fetch_status(): return await self.mcserver_error(ctx, "Failed to fetch IP")
 
-        if (server._fetch_status()):
             embed = discord.Embed(title=f'Server: {server.host}', color=bot_color)
             embed.set_thumbnail(url=server.icon)
             status = '🟢 Online' if server.is_online else '🔴 Offline'
@@ -34,11 +35,8 @@ class MCServerCommand(commands.Cog):
             if (server.is_online): embed.add_field(name='MOTD:', value=f"`{server.motd_clean}`", inline=False)
 
             await ctx.reply(embed=embed, allowed_mentions=noping)
-        else:
-            error_embed=Embeds.error_embed
-            error_embed.description = "**Bad argument**. Failed to fetch IP."
-            error_embed.set_thumbnail(url=self.bot.user.avatar.url)
-            await ctx.reply(embed=error_embed, allowed_mentions=noping)
+        except Exception as e:
+            await self.mcserver_error(ctx, e)
 
     @mcserver.error
     async def mcserver_error(self, ctx, error):
@@ -60,7 +58,7 @@ class MCServerCommand(commands.Cog):
 				"message": "**Bad argument**. Edition must be one of: java, bedrock."
 			},
             {
-				"contains": "'NotFound'",
-				"message": "NotFound"
+				"contains": "Failed to fetch IP",
+				"message": "**Bad argument**. Failed to fetch IP."
 			}
         ])

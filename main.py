@@ -3,12 +3,12 @@ import discord
 from discord.ext import commands
 
 from cogs.general import BotPing
-from cogs.minecraft import MCServerCommand
+from cogs.minecraft import MCServerCommand, MCPlayerCommand
 from cogs.fun import ChatAICommand, VoiceAICommand
 
 logger = settings.logging.getLogger("bot")
 
-cogs = [BotPing, MCServerCommand, ChatAICommand, VoiceAICommand]
+cogs = [BotPing, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand]
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):

@@ -42,7 +42,7 @@ async def combine(name):
         return buffer
         
     except Exception as e:
-        print(f"Ошибка при создании изображения: {e}")
+        print(f"Error: {e}")
         return None
 
 class MCPlayerCommand(commands.Cog):

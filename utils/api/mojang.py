@@ -79,3 +79,7 @@ class ProfileData:
     def cape_url(self):
         textures = self.textures
         return textures.get("textures", {}).get("CAPE", {}).get("url") if textures else None
+    
+    @property
+    def name(self):
+        return self._data.get("name") if self._data else None

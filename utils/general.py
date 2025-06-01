@@ -14,7 +14,7 @@ async def handle_errors(ctx, error, errors):
 			curr_score += 1
 		if "contains" in case and case["contains"] in error_msg:
 			curr_score += 1
-		#
+			
 		if curr_score >= case_cost:
 			embed = Embeds.error_embed
 			embed.description = f"{case['message']}"

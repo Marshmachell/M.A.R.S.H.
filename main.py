@@ -4,13 +4,12 @@ from discord.ext import commands
 
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand, MCPlayerCommand
-from cogs.fun import ChatAICommand, VoiceAICommand
-from cogs.help import HelpCommand
-from cogs.help.wiki import WikiCommand
+from cogs.fun import ChatAICommand, VoiceAICommand, SpiderCommand
+from cogs.help import HelpCommand, WikiCommand
 
 logger = settings.logging.getLogger("bot")
 
-cogs = [BotPing, HelpCommand, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand, WikiCommand]
+cogs = [BotPing, HelpCommand, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand, WikiCommand, SpiderCommand]
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):

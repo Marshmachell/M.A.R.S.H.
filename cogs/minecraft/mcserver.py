@@ -4,7 +4,7 @@ from discord.ext import commands
 from typing import Literal
 
 from utils.general import handle_errors
-from utils.message import Embeds, noping
+from utils.message import noping
 from utils.api.mcs import MinecraftServerStatusAPI
 from utils.colors import bot_color
 

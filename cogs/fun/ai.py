@@ -1,5 +1,3 @@
-import asyncio
-from io import BytesIO
 import settings
 import discord
 
@@ -7,7 +5,7 @@ from utils.general import handle_errors
 from discord import app_commands
 from discord.ext import commands
 from utils.message import noping
-from utils.cai import get_answer, get_speech
+from utils.characterai import get_answer, gen_speech, speak
 
 logger = settings.logging.getLogger("bot")
 
@@ -20,8 +18,8 @@ class ChatAICommand(commands.Cog):
         if message.author == self.bot.user: return
         else:
             if (message.reference.resolved.author.id == 1286298001756782665 if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX)):
-                answer = await get_answer(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content)
-                await message.reply(answer[0], allowed_mentions=noping)
+                msg, _, _ = await get_answer(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content)
+                await message.reply(msg, allowed_mentions=noping)
 
     @commands.hybrid_command(name="ai",
         aliases=["аи", "фш", "ии"],
@@ -29,12 +27,14 @@ class ChatAICommand(commands.Cog):
         usage="/ai <message>",
         help="")
     @app_commands.describe(message="Write something.")
+    @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
+    @app_commands.user_install()
     async def ai_text_command(self, ctx: commands.Context, *, message: str):
         try:
             if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done(): await ctx.defer()
-            answer = await get_answer(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message)
-            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done(): await ctx.interaction.followup.send(answer[0], allowed_mentions=noping)
-            else: await ctx.reply(answer[0], allowed_mentions=noping)
+            msg, _, _ = await get_answer(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message)
+            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done(): await ctx.interaction.followup.send(msg, allowed_mentions=noping)
+            else: await ctx.reply(msg, allowed_mentions=noping)
         except Exception as e:
             await self.ai_text_command_error(ctx, e)
 
@@ -71,29 +71,15 @@ class VoiceAICommand(commands.Cog):
             else:
                 await voice_channel.connect()
 
-            speech = await get_speech(
-                self.bot.ai_client,
-                self.bot.ai_chat,
-                settings.TEST_AI_VOICE,
-                ctx.author.name,
-                message
-            )
+            message, answer, client = await get_answer(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message)
+            speech = await gen_speech(client, answer, settings.FUN_AI_VOICE_ID)
 
             if ctx.interaction:
-                await ctx.interaction.followup.send(speech[1], allowed_mentions=noping)
+                await ctx.interaction.followup.send(message, allowed_mentions=noping)
             else:
-                await ctx.reply(speech[1], allowed_mentions=noping)
+                await ctx.reply(message, allowed_mentions=noping)
 
-            if speech:
-                voice_client = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
-                audio_source = discord.PCMVolumeTransformer(
-                    discord.FFmpegPCMAudio(BytesIO(speech[0]), pipe=True, executable="ffmpeg"
-                ))
-            
-                if not voice_client.is_playing():
-                    voice_client.play(audio_source)
-                    while voice_client.is_playing():
-                        await asyncio.sleep(0.1)
+            if speech: await speak(self, ctx, speech)
         except Exception as e:
             return await self.ai_voice_command_error(ctx, e)
     @ai_voice_command.error

@@ -1,6 +1,7 @@
 import settings
 import discord
 from discord.ext import commands
+from PyCharacterAI import get_client
 
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand, MCPlayerCommand
@@ -10,6 +11,11 @@ from cogs.help import HelpCommand, WikiCommand
 logger = settings.logging.getLogger("bot")
 
 cogs = [BotPing, HelpCommand, MCServerCommand, MCPlayerCommand, ChatAICommand, VoiceAICommand, WikiCommand, SpiderCommand]
+
+
+token=settings.TEST_AI_TOKEN
+char_id=settings.FUN_AI_CHARACTER_ID
+
 
 class MarshBot(commands.Bot):
     def __init__(self, *, intents: discord.Intents, command_prefix: str):
@@ -21,8 +27,10 @@ class MarshBot(commands.Bot):
             await self.add_cog(cog(self))
         await self.tree.sync()
         HelpCog = self.get_cog("HelpCommand")
+        self.ai_client = await get_client(token=token)
+        self.ai_chat, g = await self.ai_client.chat.create_chat(char_id)
 
-        logger.info(f"🤖: {bot.user.name}")
+        logger.info(f"🤖: {bot.user.name} | 👤: {g.author_name}")
         try:
             with open("assets/images/bot.png", "rb") as file:
                 await bot.user.edit(avatar=file.read())

@@ -3,5 +3,5 @@ from utils.message import Embeds, noping
 from utils.colors import bot_color, error_color, warn_color
 from utils.api.mcs import MinecraftServerStatusAPI
 from utils.api.mojang import MojangAPI
-from utils.cai import get_answer, get_speech
+from utils.characterai import get_answer, speak
 from utils.validator import list_closest_match, list_all_valid

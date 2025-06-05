@@ -5,21 +5,22 @@ from utils.general import handle_errors
 from discord import app_commands
 from discord.ext import commands
 from utils.message import noping
-from utils.characterai import get_answer, gen_speech, speak
+from utils.characterai import AIChatHandler, gen_speech, speak
 
 logger = settings.logging.getLogger("bot")
 
 class ChatAICommand(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
+        self.handler = AIChatHandler(self.bot.ai_char_id)
 
     @commands.Cog.listener("on_message")
     async def ai_text(self, message):
         if message.author == self.bot.user: return
         else:
-            if (message.reference.resolved.author.id == 1286298001756782665 if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX)):
-                msg, _, _ = await get_answer(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content)
-                await message.reply(msg, allowed_mentions=noping)
+            if (message.reference.resolved.author.id == self.bot.user.id if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX)):
+                response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content, False)
+                await message.reply(response.message, allowed_mentions=noping)
 
     @commands.hybrid_command(name="ai",
         aliases=["аи", "фш", "ии"],
@@ -32,9 +33,11 @@ class ChatAICommand(commands.Cog):
     async def ai_text_command(self, ctx: commands.Context, *, message: str):
         try:
             if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done(): await ctx.defer()
-            msg, _, _ = await get_answer(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message)
-            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done(): await ctx.interaction.followup.send(msg, allowed_mentions=noping)
-            else: await ctx.reply(msg, allowed_mentions=noping)
+            response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message, True)
+            if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done():
+                await ctx.interaction.followup.send(response.message, allowed_mentions=noping)
+            else:
+                await ctx.reply(response.message, allowed_mentions=noping)
         except Exception as e:
             await self.ai_text_command_error(ctx, e)
 
@@ -50,6 +53,7 @@ class ChatAICommand(commands.Cog):
 class VoiceAICommand(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
+        self.handler = AIChatHandler(self.bot.ai_char_id)
 
     @commands.hybrid_command(name="ai-voice",
         aliases=["мщшсу", "войс", "vc", "вйос", "aiv", "аив", "иив"],
@@ -71,15 +75,15 @@ class VoiceAICommand(commands.Cog):
             else:
                 await voice_channel.connect()
 
-            message, answer, client = await get_answer(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message)
-            speech = await gen_speech(client, answer, settings.FUN_AI_VOICE_ID)
+            response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, message, True)
+            speech = await gen_speech(response.client, response.answer, settings.FUN_CAI_VOICE_ID)
 
             if ctx.interaction:
-                await ctx.interaction.followup.send(message, allowed_mentions=noping)
+                await ctx.interaction.followup.send(response.message, allowed_mentions=noping)
             else:
-                await ctx.reply(message, allowed_mentions=noping)
+                await ctx.reply(response.message, allowed_mentions=noping)
 
-            if speech: await speak(self, ctx, speech)
+            if speech: await speak(self.bot, ctx, speech)
         except Exception as e:
             return await self.ai_voice_command_error(ctx, e)
     @ai_voice_command.error

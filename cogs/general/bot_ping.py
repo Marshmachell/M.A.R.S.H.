@@ -12,11 +12,11 @@ class BotPing(commands.Cog):
     async def ping(self, msg):
         if msg.author == self.bot.user:
             return
-        if msg.content == ("<@1286298001756782665>"):
+        if msg.content == (f"<@{self.bot.user.id}>"):
             latency = round(self.bot.latency * 1000)
             embed = discord.Embed(
                 title=f"🏓 Pong, {msg.author.name}!",
-                description=f"Great to have you here! I’m <@1286298001756782665>, a bot created by <@539054518885679126> to help out on this server.\n\n📌 Make sure to check out the rules in <#1376652681157935124> to avoid any trouble.\n💡 If you have any questions, feel free to ask in chat or ping the mods.\n\nHope you enjoy your stay and have fun! 😊",
+                description=f"Great to have you here! I’m <@{self.bot.user.id}>, a bot created by <@539054518885679126> to help out on this server.\n\n📌 Make sure to check out the rules in **empty** to avoid any trouble.\n💡 If you have any questions, feel free to ask in chat or ping the mods.\n\nHope you enjoy your stay and have fun! 😊",
                 color=bot_color)
             embed.set_thumbnail(url=self.bot.user.avatar.url)
             embed.set_footer(text=f"🆔 {self.bot.user.id}     💻 {latency}ms")
@@ -31,7 +31,7 @@ class BotPing(commands.Cog):
         latency = round(self.bot.latency * 1000)
         embed = discord.Embed(
             title=f"🏓 Pong, {msg.author.name}!",
-            description=f"Great to have you here! I’m <@1286298001756782665>, a bot created by <@539054518885679126> to help out on this server.\n\n📌 Make sure to check out the rules in <#1376652681157935124> to avoid any trouble.\n💡 If you have any questions, feel free to ask in chat or ping the mods.\n\nHope you enjoy your stay and have fun! 😊",
+            description=f"Great to have you here! I’m <@{self.bot.user.id}>, a bot created by <@539054518885679126> to help out on this server.\n\n📌 Make sure to check out the rules in **empty** to avoid any trouble.\n💡 If you have any questions, feel free to ask in chat or ping the mods.\n\nHope you enjoy your stay and have fun! 😊",
             color=bot_color)
         embed.set_thumbnail(url=self.bot.user.avatar.url)
         embed.set_footer(text=f"🆔 {self.bot.user.id}     💻 {latency}ms")

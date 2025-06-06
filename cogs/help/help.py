@@ -18,18 +18,18 @@ class HelpCommand(commands.Cog):
 		help="")
     async def help(self, ctx, *, feature=None):
         fetched_commands = await self.bot.tree.fetch_commands()
-        cmd_list = [command.name for command in fetched_commands]
+        all_cmd_list = [command.name for command in fetched_commands]
         if feature == None:
-            permed_cmd_list = []
-            for command in fetched_commands:
-                permed_cmd_list.append(command)
-            cmd_mentions = ", ".join([f"{command.mention}" for command in sorted(permed_cmd_list, key=lambda command: command.name)])
+            all_cmd_list = [command for command in fetched_commands]
+            mc_cmd_list = [command for command in fetched_commands if command.name.startswith("mc")]
+            all_cmd_mentions = ", ".join([f"{command.mention}" for command in sorted(all_cmd_list, key=lambda command: command.name)])
+            mc_cmd_mentions = ", ".join([f"{command.mention}" for command in sorted(mc_cmd_list, key=lambda command: command.name)])
             embed = discord.Embed(color=bot_color)
             embed.set_thumbnail(url=self.bot.user.avatar.url)
-            embed.description = f"## Command List:\n{cmd_mentions}\n"
+            embed.description = f"## Full Command List:\n{all_cmd_mentions}\n## MC Command List:\n{mc_cmd_mentions}\n"
             await ctx.reply(embed=embed, allowed_mentions=noping)
             return
-        feature = list_closest_match(feature, cmd_list, 10)
+        feature = list_closest_match(feature, all_cmd_list, 10)
         embed = discord.Embed(color=bot_color)
         for command in self.bot.commands:
             if feature == command.name or feature in command.aliases:

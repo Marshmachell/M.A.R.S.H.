@@ -27,8 +27,7 @@ class MCServerCommand(commands.Cog):
 
             embed = discord.Embed(title=f'Server: {server.host}', color=bot_color)
             embed.set_thumbnail(url=server.icon)
-            status = '🟢 Online' if server.is_online else '🔴 Offline'
-            embed.add_field(name='Status', value=f'`{status}`', inline=True)
+            embed.add_field(name='Status', value=f'`{server.str_status}`', inline=True)
             if (server.is_online): embed.add_field(name='Players', value=f'`{server.online}/{server.max_online}`', inline=True)
             if (server.is_online): embed.add_field(name='Version', value=f'`{server.version}`', inline=True)
             if (server.is_online): embed.add_field(name='IP-address', value=f'`{server.ip}`', inline=True)
@@ -36,7 +35,12 @@ class MCServerCommand(commands.Cog):
             embed.add_field(name='Full address', value=f'`{server.host}:{server.port}`', inline=True)
             if (server.is_online): embed.add_field(name='MOTD:', value=f"`{server.motd_clean}`", inline=False)
 
-            await ctx.reply(embed=embed, allowed_mentions=noping)
+            try:
+                if isinstance(ctx.interaction, discord.Interaction) and not ctx.interaction.response.is_done(): await ctx.defer()
+                if isinstance(ctx.interaction, discord.Interaction) and ctx.interaction.response.is_done(): await ctx.interaction.followup.send(embed=embed, allowed_mentions=noping)
+                else: await ctx.reply(embed=embed, allowed_mentions=noping)
+            except Exception as e:
+                await self.mcserver_error(ctx, e)
         except Exception as e:
             await self.mcserver_error(ctx, e)
 

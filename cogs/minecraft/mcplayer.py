@@ -4,7 +4,6 @@ from io import BytesIO
 import discord
 from discord import app_commands
 from discord.ext import commands
-import json
 
 from utils.general import handle_errors
 from utils.message import noping

@@ -5,6 +5,7 @@ import os
 from discord import app_commands
 from discord.ext import commands
 
+from utils.general import handle_errors
 from utils.colors import bot_color
 from utils.validator import dict_all_valid
 
@@ -30,14 +31,17 @@ class WikiCapesCommand(commands.Cog):
     
     @commands.hybrid_command(
         name="wiki-capes",
+        aliases=["wkc", "вкк", "wcapes", "wcape", "вкейп"],
         description="Shows information about Minecraft cape.",
-    )
+        usage="/wiki-capes <cape>",
+        help="")
     @app_commands.describe(cape="Cape name.")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.user_install()
     async def wiki_capes(self, ctx: commands.Context, cape: str):
         try:
             capes = capes_dict()
+            if cape not in capes: raise ValueError("cape not exists")
             file_path = f"assets/wiki/minecraft/capes/{capes[cape]}.json"
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -59,7 +63,7 @@ class WikiCapesCommand(commands.Cog):
             else:
                 await ctx.reply(embed=embed)
         except Exception as e:
-            await ctx.send(f"Error: {e}", ephemeral=True)
+            await self.wiki_capes_error(ctx, e)
 
     @wiki_capes.autocomplete("cape")
     async def cape_autocomplete(self, ctx: discord.Interaction, curr: str) -> List[app_commands.Choice[str]]:
@@ -68,3 +72,16 @@ class WikiCapesCommand(commands.Cog):
             return [app_commands.Choice(name=cape, value=cape) for cape in dict_all_valid(curr, capes)[:25]]
         else:
             return [app_commands.Choice(name=cape, value=cape) for cape in list(capes)][:25]
+        
+    @wiki_capes.error
+    async def wiki_capes_error(self, ctx, error):
+        await handle_errors(ctx, error, [
+            {
+                "contains": "cape is a required argument",
+                "message": f"**Missed required argument**. Enter cape name."
+            },
+            {
+                "contains": "cape not exists",
+                "message": f"**Bad argument**. Cape does not exists."
+            }
+        ])

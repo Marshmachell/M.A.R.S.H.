@@ -29,6 +29,12 @@ class MinecraftServerStatusAPI():
         return self._data.get("online") if self._data else False
     
     @property
+    def str_status(self):
+        self._ensure_data
+        online = self._data.get("online")
+        return '\U0001F7E2 Online' if online else '\U0001F534 Offline'
+    
+    @property
     def host(self):
         self._ensure_data()
         return self._data.get("host") if self._data else False

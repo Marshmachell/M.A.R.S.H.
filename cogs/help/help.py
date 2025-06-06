@@ -7,6 +7,10 @@ from utils.colors import bot_color
 from utils.message import noping
 from utils.validator import list_closest_match, list_all_valid
 
+def create_mention_list(list):
+    mentions = ", ".join([f"{command.mention}" for command in sorted(list, key=lambda command: command.name)])
+    return mentions
+
 class HelpCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -22,11 +26,13 @@ class HelpCommand(commands.Cog):
         if feature == None:
             all_cmd_list = [command for command in fetched_commands]
             mc_cmd_list = [command for command in fetched_commands if command.name.startswith("mc")]
-            all_cmd_mentions = ", ".join([f"{command.mention}" for command in sorted(all_cmd_list, key=lambda command: command.name)])
-            mc_cmd_mentions = ", ".join([f"{command.mention}" for command in sorted(mc_cmd_list, key=lambda command: command.name)])
+            wiki_cmd_list = [command for command in fetched_commands if command.name.startswith("wiki")]
+            all_cmd_mentions = create_mention_list(all_cmd_list)
+            mc_cmd_mentions = create_mention_list(mc_cmd_list)
+            wiki_cmd_mentions = create_mention_list(wiki_cmd_list)
             embed = discord.Embed(color=bot_color)
             embed.set_thumbnail(url=self.bot.user.avatar.url)
-            embed.description = f"## Full Command List:\n{all_cmd_mentions}\n## MC Command List:\n{mc_cmd_mentions}\n"
+            embed.description = f"## Full Command List:\n{all_cmd_mentions}\n## Wiki Command List:\n{wiki_cmd_mentions}\n## MC Command List:\n{mc_cmd_mentions}\n"
             await ctx.reply(embed=embed, allowed_mentions=noping)
             return
         feature = list_closest_match(feature, all_cmd_list, 10)

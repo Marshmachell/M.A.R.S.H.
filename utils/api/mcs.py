@@ -26,7 +26,7 @@ class MinecraftServerStatusAPI():
     @property
     def is_online(self):
         self._ensure_data()
-        return self._data.get("online") if self._data else False
+        return self._data.get("online", False)
     
     @property
     def str_status(self):
@@ -37,37 +37,37 @@ class MinecraftServerStatusAPI():
     @property
     def host(self):
         self._ensure_data()
-        return self._data.get("host") if self._data else False
+        return self._data.get("host", False)
     
     @property
     def port(self):
         self._ensure_data()
-        return self._data.get("port") if self._data else 0
+        return self._data.get("port", 0)
     
     @property
     def ip(self):
         self._ensure_data()
-        return self._data.get("ip_address") if self._data else 'Unknown'
+        return self._data.get("ip_address", 'Unknown')
     
     @property
     def version(self):
         self._ensure_data()
-        return self._data.get("version", {}).get("name_clean" if self.edition=="java" else "name") if self._data else 'Unknown'
+        return self._data.get("version", {}).get("name_clean" if self.edition=="java" else "name", 'Unknown')
     
     @property
     def online(self):
         self._ensure_data()
-        return self._data.get("players", {}).get("online") if self._data else 0
+        return self._data.get("players", {}).get("online", 0)
     
     @property
     def max_online(self):
         self._ensure_data()
-        return self._data.get("players", {}).get("max") if self._data else 0
+        return self._data.get("players", {}).get("max", 0)
     
     @property
     def motd_clean(self):
         self._ensure_data()
-        return self._data.get("motd", {}).get("clean") if self._data else 'Unknown'
+        return self._data.get("motd", {}).get("clean", 'Unknown')
     
     @property
     def icon(self):

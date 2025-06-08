@@ -22,23 +22,23 @@ class AIChatHandler:
         self.char_id = char_id
 
     async def send_request(self, client, chat, author, request, log: bool):
-        if not log == False: logger.info(f"📲 ({author}): request received.")
+        if log: logger.info(f"📲 ({author}): request received.")
         try:
-            if not log == False: logger.info(f"📳 ({author}): request start processing: {request}.")
+            if log: logger.info(f"📳 ({author}): request start processing: {request}.")
             answer = await client.chat.send_message(self.char_id, chat.chat_id, request)
             message = answer.get_primary_candidate().text
             await client.close_session()
         except SessionClosedError:
-            if not log == False: logger.info("📴: session closed.")
+            if log: logger.info("📴: session closed.")
         finally:
             await client.close_session()
-            if not log == False: logger.info(f"📱 ({author}): answer: {message}.")
+            if log: logger.info(f"📱 ({author}): answer: {message}.")
 
         self._response = AIChatResponse(client, chat, answer, message)
         return self._response
     
     @property
-    def message(self) -> PyCharacterAI.types.chat.Chat:
+    def chat(self) -> PyCharacterAI.types.chat.Chat:
         if self._response is None: raise ValueError("'missed send_request()'")
         return self._response.chat
 

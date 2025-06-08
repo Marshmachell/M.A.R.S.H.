@@ -18,7 +18,7 @@ class ChatAICommand(commands.Cog):
     async def ai_text(self, message):
         if message.author == self.bot.user: return
         else:
-            if (message.reference.resolved.author.id == self.bot.user.id if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX)):
+            if (message.reference.resolved.author.id == self.bot.user.id if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX) and not message.content == f"<@{self.bot.user.id}>"):
                 response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content, False)
                 await message.reply(response.message, allowed_mentions=noping)
 

@@ -1,1 +1,1 @@
-from cogs.general.bot_ping import BotPing
+from cogs.general.ping import BotPing

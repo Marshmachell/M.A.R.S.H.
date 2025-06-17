@@ -2,6 +2,8 @@ import settings
 import discord
 from discord.ext import commands
 from PyCharacterAI import get_client
+import time
+from typing import TypedDict
 
 from cogs.general import BotPing
 from cogs.minecraft import MCServerCommand, MCPlayerCommand
@@ -41,5 +43,9 @@ class MarshBot(commands.Bot):
                 
 intents = discord.Intents.all()
 bot = MarshBot(command_prefix=settings.COMMAND_PREFIX, intents=intents)
+
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Activity(application_id=1, name='⭐', type=2))
 
 bot.run(settings.DISCORD_API_SECRET, root_logger=True)

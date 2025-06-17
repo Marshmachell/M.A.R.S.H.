@@ -121,7 +121,7 @@ celerybeat.pid
 
 # Environments
 run.py
-.test-branch
+.temp
 .env
 .venv
 desktop.ini

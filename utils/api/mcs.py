@@ -70,6 +70,11 @@ class MinecraftServerStatusAPI():
         return self._data.get("motd", {}).get("clean", 'Unknown')
     
     @property
-    def icon(self):
+    def icon_clean(self):
         self._ensure_data()
         return f"https://api.mcstatus.io/v2/icon/{self.address}"
+    
+    @property
+    def icon_raw(self):
+        self._ensure_data()
+        return self._data.get("icon", 'Unknown')

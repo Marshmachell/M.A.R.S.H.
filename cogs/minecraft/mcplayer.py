@@ -14,14 +14,10 @@ async def combine(name):
     front = f"https://vzge.me/full/832/{name}.png?y=0"
     back = f"https://vzge.me/full/832/{name}.png?y=180"
     
-    headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-    
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
     try:
         response1 = requests.get(front, headers=headers, timeout=10)
         response2 = requests.get(back, headers=headers, timeout=10)
-        
         if response1.status_code != 200 or response2.status_code != 200:
             return None
         
@@ -57,16 +53,13 @@ class MCPlayerCommand(commands.Cog):
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.user_install()
     async def mcuser(self, ctx: commands.Context, playername: str):
+        if len(playername) > 16 or len(playername) < 3: raise AttributeError("Invalid playername")
         try:
-            if len(playername) > 16 or len(playername) < 3: raise AttributeError("Invalid playername")
-
             player = MojangAPI(playername)
-
             if not player.profile:
                 return await self.mcuser_error(ctx, "UUID not found or API unavailable")
             else:
                 image = await combine(player.profile.name)
-
                 embed = discord.Embed(
                     title="Minecraft Player Profile",
                     description=f"**{player.profile.name}**\n`{player.uuid}`",

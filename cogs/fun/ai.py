@@ -15,12 +15,12 @@ class ChatAICommand(commands.Cog):
         self.handler = AIChatHandler(self.bot.ai_char_id)
 
     @commands.Cog.listener("on_message")
-    async def ai_text(self, message):
-        if message.author == self.bot.user: return
+    async def ai_text(self, ctx: commands.Context):
+        if ctx.author == self.bot.user: return
         else:
-            if (message.reference.resolved.author.id == self.bot.user.id if message.reference else None or message.channel.type == discord.ChannelType.private and not message.content.startswith(settings.COMMAND_PREFIX) and not message.content == f"<@{self.bot.user.id}>"):
-                response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, message.author.name, message.content, False)
-                await message.reply(response.message, allowed_mentions=noping)
+            if (ctx.reference.resolved.author.id == self.bot.user.id if ctx.reference else None or ctx.channel.type == discord.ChannelType.private and not ctx.content.startswith(settings.COMMAND_PREFIX) and not ctx.content == f"<@{self.bot.user.id}>"):
+                response = await self.handler.send_request(self.bot.ai_client, self.bot.ai_chat, ctx.author.name, ctx.content, False)
+                await ctx.reply(response.message, allowed_mentions=noping)
 
     @commands.hybrid_command(name="ai",
         aliases=["аи", "фш", "ии"],
@@ -83,7 +83,9 @@ class VoiceAICommand(commands.Cog):
             else:
                 await ctx.reply(response.message, allowed_mentions=noping)
 
-            if speech: await speak(self.bot, ctx, speech)
+            if speech:
+                vc = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
+                await speak(speech, vc)
         except Exception as e:
             return await self.ai_voice_command_error(ctx, e)
     @ai_voice_command.error

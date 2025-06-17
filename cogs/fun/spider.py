@@ -12,7 +12,7 @@ class SpiderCommand(commands.Cog):
     @commands.hybrid_command(name="spider",
         aliases=["ызшвук", "паук", "паучок"],
         description="Send spider gif in chat.",
-        usage="/ai <message>",
+        usage="/spider",
         help="")
     @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
     @app_commands.user_install()

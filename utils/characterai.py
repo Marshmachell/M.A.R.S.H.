@@ -39,23 +39,19 @@ class AIChatHandler:
     
     @property
     def chat(self) -> PyCharacterAI.types.chat.Chat:
-        if self._response is None: raise ValueError("'missed send_request()'")
-        return self._response.chat
+        return self._response.chat if self._response is not None else ValueError("'missed send_request()'")
 
     @property
     def message(self) -> str:
-        if self._response is None: raise ValueError("'missed send_request()'")
-        return self._response.message
+        return self._response.message if self._response is not None else ValueError("'missed send_request()'")
     
     @property
     def answer(self) -> PyCharacterAI.types.message.Turn:
-        if self._response is None: raise ValueError("'missed send_request()'")
-        return self._response.answer
+        return self._response.answer if self._response is not None else ValueError("'missed send_request()'")
     
     @property
     def client(self) -> PyCharacterAI.client.AsyncClient:
-        if self._response is None: raise ValueError("'missed send_request()'")
-        return self._response.client
+        return self._response.client if self._response is not None else ValueError("'missed send_request()'")
 
 async def gen_speech(client, answer, voice_id):
     primary_candidate = answer.get_primary_candidate()
@@ -66,12 +62,11 @@ async def gen_speech(client, answer, voice_id):
         voice_id=voice_id)
     return speech
 
-async def speak(bot, ctx, speech):
-    voice_client = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+async def speak(speech, vc: discord.VoiceClient):
     audio_source = discord.PCMVolumeTransformer(
          discord.FFmpegPCMAudio(BytesIO(speech), pipe=True, executable="ffmpeg"
                                 ))
-    if not voice_client.is_playing():
-        voice_client.play(audio_source)
-        while voice_client.is_playing():
+    if not vc.is_playing():
+        vc.play(audio_source)
+        while vc.is_playing():
             await asyncio.sleep(0.1)
